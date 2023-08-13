@@ -57,6 +57,7 @@ else{
                             <option value="11">11th</option>
                             <option value="12">12th</option>
                             <option value="bca">BCA</option>
+                            <option value="bcom">BCOM</option>
                         </select>
                     </div>
                     <div class="input-field">
