@@ -1,7 +1,7 @@
 <?php
 require_once('include/login_header.php');
 ?>
-<?php
+<!-- <?php
 
     require_once('include/dbcon.php');
 
@@ -31,7 +31,43 @@ require_once('include/login_header.php');
         header("location:admin/dashboard.php");
     }
 }
+?> -->
+
+<?php
+require_once('include/dbcon.php');
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $email = htmlentities(mysqli_real_escape_string($con, $email));
+
+    $query = "SELECT * FROM `teacher` WHERE `email` = '$email'";
+    $run = mysqli_query($con, $query);
+    $row = mysqli_num_rows($run);
+
+    if ($row < 1) {
+        $_SESSION['login_failed'] = "Username Or Password Wrong";
+        $login_failed = $_SESSION['login_failed'];
+    } else {
+        $data = mysqli_fetch_assoc($run);
+        $name = $data['name'];
+        $uid = $data['id'];
+        $storedPasswordHash = $data['password'];
+
+        if (password_verify($password, $storedPasswordHash)) {
+            $_SESSION['email'] = $email;
+            $_SESSION['name'] = $name;
+            $_SESSION['uid'] = $uid;
+            header("location:admin/dashboard.php");
+        } else {
+            $_SESSION['login_failed'] = "Username Or Password Wrong";
+            $login_failed = $_SESSION['login_failed'];
+        }
+    }
+}
 ?>
+
 
 
 <?php

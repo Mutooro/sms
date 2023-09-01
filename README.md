@@ -16,5 +16,5 @@ i have developed this project when my collage professor hasn't think to start th
  
  if you want any helps regarding this or any project,
  
- mail us at socialcodia@gmail.com
+mutooro.martin@gmail.com
  

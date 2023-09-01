@@ -179,11 +179,27 @@ if(isset($_POST['post'])){
                                     <h5><a href="#"><?php echo $following_row; ?></a></h5>
                             </div>
                         </div>
-                        <div class=" col l12 white-text brown lighten-1">
-                            <h5>About Me!</h5>
-                            <p>Hi! I'm <?php echo $name; ?>, I'm <?php echo $age; ?> years old, living in <?php echo $city; ?>. I am a college student
-studying at Yashawantrao Chavan Mahavidyalaya. </p>
-                        </div>
+      <!-- <div class="col l12 white-text brown lighten-1">
+    <h5>About Me!</h5>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+        $about_me = $_POST["about_me"];
+       
+        echo "<p>$about_me</p>";
+    } else {
+    ?>
+    <form method="post" action="">
+       
+
+      
+        <textarea id="about_me" name="about_me" rows="4" required></textarea><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <?php } ?>
+</div> -->
+
                         <div class="container divider"></div>
                             
                             <div class="container divider"></div>
@@ -269,8 +285,11 @@ studying at Yashawantrao Chavan Mahavidyalaya. </p>
                                 </div>
                             </div>
                             <div class="col s4 center">
-                                <a class="btn transparent blue-text z-depth-0" href="" style="font-size: 12px;"><i class="material-icons">thumb_up</i> Like</a>
-                            </div>
+    <a class="btn transparent blue-text z-depth-0" href="#" style="font-size: 12px;" id="likeButton">
+        <i class="material-icons">thumb_up</i> Like
+    </a>
+</div>
+
                             <div class="col s4 center">
                                     <a class="btn transparent blue-text z-depth-0 left-align" href="" style="font-size: 12px; margin-left: -10px; margin-right:-10px;"><i class="material-icons">comment</i> Comment</a>
                             </div>
@@ -323,6 +342,7 @@ studying at Yashawantrao Chavan Mahavidyalaya. </p>
                                         <button type="submit" name="follow" id="follow" style="border-radius:20%;" class="btn z-depth-0 orange waves-effect waves-light" >Follow</button>
                                         </div> 
                                 </form>
+                                
                             </div>
                         </div>
                     <?php } ?>
@@ -369,4 +389,6 @@ studying at Yashawantrao Chavan Mahavidyalaya. </p>
             })
         }
     </script>
+    
+
 <?php require_once('../include/students/footer.php'); ?>

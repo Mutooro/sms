@@ -2,35 +2,41 @@
 require_once('../include/login_header.php');
 ?>
 <?php
+require_once('../include/dbcon.php');
 
-    require_once('../include/dbcon.php');
-
-    if(isset($_POST['login'])){
-
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $email = htmlentities(mysqli_real_escape_string($con,$email));
-    $password = htmlentities(mysqli_real_escape_string($con,$password));
+    $email = htmlentities(mysqli_real_escape_string($con, $email));
+    $password = htmlentities(mysqli_real_escape_string($con, $password));
 
-    $query = "SELECT * FROM `students` WHERE `email` = '$email' and `password` = '$password' ";
-    $run = mysqli_query($con,$query);
+    $query = "SELECT * FROM `students` WHERE `email` = '$email'";
+    $run = mysqli_query($con, $query);
     $row = mysqli_num_rows($run);
-    if($row < 1)
-    {
+
+    if ($row < 1) {
         $_SESSION['login_failed'] = "Username Or Password Wrong";
         $login_failed = $_SESSION['login_failed'];
-    }
-    else{
+    } else {
         $data = mysqli_fetch_assoc($run);
-        $student_name = $data['name'];
-        $student_id = $data['id'];
-        $_SESSION['student_name'] = $student_name;
-        $_SESSION['student_id'] = $student_id;
-        header("location:index.php");
+        $hashedPassword = $data['password'];
+
+        // Use password_verify to check if the entered password matches the stored hash
+        if (password_verify($password, $hashedPassword)) {
+            $student_name = $data['name'];
+            $student_id = $data['id'];
+            $_SESSION['student_name'] = $student_name;
+            $_SESSION['student_id'] = $student_id;
+            header("location:index.php");
+        } else {
+            $_SESSION['login_failed'] = "Username Or Password Wrong";
+            $login_failed = $_SESSION['login_failed'];
+        }
     }
 }
-?>s
+?>
+
 <?php
 if(isset($_SESSION['student_id']))
 {

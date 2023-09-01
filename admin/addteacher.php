@@ -3,35 +3,37 @@ require_once('../include/header.php');
 ?>
 
 <?php
+require_once('../include/dbcon.php');
 
-    require_once('../include/dbcon.php');
-
-    if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $image_name = $_FILES['image']['name'];
-    $temp_image_name =  $_FILES['image']['tmp_name'];
+    $temp_image_name = $_FILES['image']['tmp_name'];
     $name = $_POST['name'];
-    $email= $_POST['email'];
-    $contact= $_POST['contact'];
-    $gender= $_POST['gender'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $gender = $_POST['gender'];
     $position = $_POST['position'];
-    $password =  $_POST['password'];
-    $address = $_POST['address'];
-    move_uploaded_file($temp_image_name,"../img/$image_name");
-   $query = "INSERT INTO `teacher`(`name`, `email`, `contact`, `gender`, `position`, `password`, `address`,`image`) VALUES ('$name','$email','$contact','$gender','$position','$password','$address','$image_name')";
-    $run = mysqli_query($con,$query);
-    
-    if($run)
-    {
-        $_SESSION['teacher_added'] = "Teacher Added Successfully";
-        $teacher_added =  $_SESSION['teacher_added'];
-    }
-    else{
+    $password = $_POST['password']; // Password in plaintext
 
-      $_SESSION['teacher_added_failed'] = "Failed To Add New Teacher";
-      $teacher_added_failed =  $_SESSION['Teacher_added_failed'];
-     }
+    // Hash the plaintext password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $address = $_POST['address'];
+    move_uploaded_file($temp_image_name, "../img/$image_name");
+
+    $query = "INSERT INTO `teacher`(`name`, `email`, `contact`, `gender`, `position`, `password`, `address`, `image`) VALUES ('$name','$email','$contact','$gender','$position','$hashedPassword','$address','$image_name')";
+    $run = mysqli_query($con, $query);
+
+    if ($run) {
+        $_SESSION['teacher_added'] = "Teacher Added Successfully";
+        $teacher_added = $_SESSION['teacher_added'];
+    } else {
+        $_SESSION['teacher_added_failed'] = "Failed To Add New Teacher";
+        $teacher_added_failed = $_SESSION['teacher_added_failed'];
+    }
 }
 ?>
+
       <!-- The Coding Has Been Started From Here -->
 
       <nav class="teal">

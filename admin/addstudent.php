@@ -14,16 +14,20 @@ if(isset($_POST['submit'])) {
     $gender = $_POST['gender'];
     $contact = $_POST['contact'];
     $email = $_POST['email'];
-    $password =  $_POST['password'];
+    $password = $_POST['password']; // Password in plaintext
+
+    // Hash the plaintext password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     $city = $_POST['city'];
     $date_of_birth = $_POST['date_of_birth']; // New field
     $religion = $_POST['religion']; // New field
     move_uploaded_file($temp_image_name, "img/$image_name");
-    
-    $query = "INSERT INTO `students`(`rollno`, `standerd`, `name`, `gender`, `contact`,`password`, `email`, `city`, `date_of_birth`, `religion`, `image`) VALUES ('$rollno','$standerd','$name','$gender','$contact','$password','$email','$city','$date_of_birth','$religion','$image_name')";
-    
+
+    $query = "INSERT INTO `students`(`rollno`, `standerd`, `name`, `gender`, `contact`, `password`, `email`, `city`, `date_of_birth`, `religion`, `image`) VALUES ('$rollno','$standerd','$name','$gender','$contact','$hashedPassword','$email','$city','$date_of_birth','$religion','$image_name')";
+
     $run = mysqli_query($con, $query);
-    
+
     if($run) {
         $_SESSION['student_added'] = "Student Added Successfully";
         $student_added = $_SESSION['student_added'];
@@ -33,6 +37,7 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
+
 
       <!-- The Coding Has Been Started From Here -->
 
