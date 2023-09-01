@@ -30,7 +30,7 @@ $teacher_row = mysqli_num_rows($run);
       <nav class="teal">
         <div class="container">
           <div class="nav-wrapper">
-            <a href="" class="brand-logo center">Social Learnia</a>
+            <a href="" class="brand-logo center">My school</a>
             <a href="" class="sidenav-trigger show-on-large" data-target="slide-out"><i class="material-icons">menu</i></a>
           </div>        
         </div>

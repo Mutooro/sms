@@ -25,6 +25,7 @@ $standerd = $data['standerd'];
 $gender = $data['gender'];
 $city  = $data['city'];
 $contact = $data['contact'];
+$password = $data['password'];
 $email = $data['email'];
 ?>
 
@@ -40,10 +41,11 @@ $email = $data['email'];
     $name= htmlentities(mysqli_real_escape_string($con,$_POST['name']));
     $gender= htmlentities(mysqli_real_escape_string($con,$_POST['gender']));
     $contact = htmlentities(mysqli_real_escape_string($con,$_POST['contact']));
+    $password = htmlentities(mysqli_real_escape_string($con,$_POST['password']));
     $email =  htmlentities(mysqli_real_escape_string($con,$_POST['email']));
     $city = htmlentities(mysqli_real_escape_string($con,$_POST['city']));
     move_uploaded_file($temp_image_name,"../img/$image_name");
-   $query = "UPDATE `students` SET `rollno`='$rollno', `standerd`='$standerd', `name`='$name', `gender`='$gender', `contact`='$contact', `email`='$email', `city`='$city', `image`='$image' WHERE `id`='$student_id' ";
+   $query = "UPDATE `students` SET `rollno`='$rollno', `standerd`='$standerd', `name`='$name', `gender`='$gender', `contact`='$contact',`password`='$password', `email`='$email', `city`='$city', `image`='$image' WHERE `id`='$student_id' ";
     $run = mysqli_query($con,$query);
 
     if($run)
@@ -65,7 +67,7 @@ $email = $data['email'];
       <nav class="teal">
         <div class="container">
           <div class="nav-wrapper">
-            <a href="" class="brand-logo center">Social Learnia</a>
+            <a href="" class="brand-logo center">My school</a>
             <a href="" class="sidenav-trigger show-on-large" data-target="slide-out"><i class="material-icons">menu</i></a>
           </div>
         </div>
@@ -113,6 +115,11 @@ $email = $data['email'];
                                     <input type="text" value="<?php echo $name; ?>" name="name" id="name" required="required">
                                     <label for="name">Enter Name</label>
                                 </div>
+                                <div class="input-field">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input type="text" name="password" id="password" value="<?php echo $password; ?>" required="required">
+                                        <label for="password">Enter A Password</label>
+                                    </div>
                                 <div class="input-field">
                                         <i class="material-icons prefix">call</i>
                                         <input type="text" value="<?php echo $contact; ?>" name="contact" id="contact" required="required">

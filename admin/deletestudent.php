@@ -9,6 +9,7 @@ require_once('../include/header.php');
 
     $standerd = $_POST['standerd'];
     $name = $_POST['name'];
+    
 
     $query = "select * from students where `standerd` = '$standerd' and `name` LIKE '%$name%'";
     $run = mysqli_query($con,$query);
@@ -20,6 +21,26 @@ require_once('../include/header.php');
     else{
       
     }
+}
+
+if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {
+  $student_id = $_GET['delete_id'];
+
+  // Include necessary files and establish database connection
+  require_once('../include/dbcon.php'); // Adjust the path as needed
+
+  // Perform the delete operation
+  $delete_query = "DELETE FROM students WHERE id = $student_id";
+
+  if (mysqli_query($con, $delete_query)) {
+      http_response_code(200); // OK status
+  } else {
+      http_response_code(500); // Internal Server Error status
+  }
+
+  // Close the database connection
+  mysqli_close($con);
+  exit;
 }
 ?>
 
@@ -93,32 +114,48 @@ require_once('../include/header.php');
                                 <th>Gender</th>
                                 <th>City</th>
                                 <th>Contact</th>
+                                <th>Action</th>
                             </tr>
                             
-                                <?php
-                                $count=0;
-                                    while($data = mysqli_fetch_assoc($run)){
-                                            $count++;
-                                            $image = $data['image'];
-                                            $name = $data['name'];
-                                            $rollno = $data['rollno'];
-                                            $standerd = $data['standerd'];
-                                            $gender = $data['gender'];
-                                            $city  = $data['city'];
-                                            $contact = $data['contact'];
-                                            
-                                    
-                                ?><tr>
-                                    <td> <?php echo $count; ?> </td>
-                                    <td> <img src="images/<?php echo $image; ?>" class="responsive-img circle" style="width: 100px;"> </td>
-                                    <td><?php echo $name; ?></td>
-                                    <td><?php echo $rollno; ?></td>
-                                    <td><?php echo $standerd; ?></td>
-                                    <td><?php echo $gender; ?></td>
-                                    <td><?php echo $contact; ?></td>
-                                    <td><?php echo $city; ?></td>
-                                    </tr>
-                                <?php } ?>
+                            <?php
+$query = "SELECT * FROM students WHERE `standerd` = '$standerd' AND `name` LIKE '%$name%'";
+$run = mysqli_query($con, $query);
+$count = 0;
+
+while ($data = mysqli_fetch_assoc($run)) {
+    $count++;
+    $image = $data['image'];
+    $name = $data['name'];
+    $rollno = $data['rollno'];
+    $standerd = $data['standerd'];
+    $gender = $data['gender'];
+    $city = $data['city'];
+    $contact = $data['contact'];
+    $student_id = $data['id'];
+
+    echo "<tr>
+        <td>$count</td>
+        <td><img src=\"images/$image\" class=\"responsive-img circle\" style=\"width: 100px;\"></td>
+        <td>$name</td>
+        <td>$rollno</td>
+        <td>$standerd</td>
+        <td>$gender</td>
+        <td>$contact</td>
+        <td>$city</td>
+        <td>
+            <a href=\"#\" class=\"red-text waves-light\" onclick=\"deleteStudent($student_id)\">
+                <i class=\"material-icons\">delete</i>
+            </a>
+        </td>
+    </tr>";
+}
+
+if ($count === 0) {
+    echo "<tr><td colspan=\"9\">No student records found</td></tr>";
+}
+?>
+
+                                
                             
                         </table>
                     </li>
@@ -126,6 +163,30 @@ require_once('../include/header.php');
                 </div>
             </div>
         </div>
+
+        <script>
+function deleteStudent(studentId) {
+    var confirmDelete = confirm("Are you sure you want to delete this student?");
+
+    if (confirmDelete) {
+        // Send an AJAX request to delete the student
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Refresh the page after successful deletion
+                    location.reload();
+                } else {
+                    alert("Error deleting student.");
+                }
+            }
+        };
+
+        xhr.open("GET", "deletestudent.php?delete_id=" + studentId, true);
+        xhr.send();
+    }
+}
+</script>
 
 
 

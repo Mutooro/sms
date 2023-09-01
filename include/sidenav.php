@@ -39,7 +39,7 @@ $image = $data['image'];
                 <ul>
                   <li>
                   <a href="addstudent.php"><i class="material-icons">person_add</i>Add Student</a>
-                  <li><a href="editstudent.php?id=20"><i class="material-icons">edit</i>Edit Student</a></li>
+                  <li><a href="editstudent.php"><i class="material-icons">edit</i>Edit Student</a></li>
                   <li><a href="deletestudent.php"><i class="material-icons">delete</i>Delete Student</a></li>
                   <li><a href="allstudents.php"><i class="material-icons">person</i>All Student</a></li>
                   

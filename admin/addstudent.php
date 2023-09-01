@@ -3,35 +3,37 @@ require_once('../include/header.php');
 ?>
 
 <?php
+require_once('../include/dbcon.php');
 
-    require_once('../include/dbcon.php');
-
-    if(isset($_POST['submit'])){
+if(isset($_POST['submit'])) {
     $image_name = $_FILES['image']['name'];
-    $temp_image_name =  $_FILES['image']['tmp_name'];
+    $temp_image_name = $_FILES['image']['tmp_name'];
     $rollno = $_POST['rollno'];
-    $standerd= $_POST['standerd'];
-    $name= $_POST['name'];
-    $gender= $_POST['gender'];
+    $standerd = $_POST['standerd'];
+    $name = $_POST['name'];
+    $gender = $_POST['gender'];
     $contact = $_POST['contact'];
-    $email =  $_POST['email'];
+    $email = $_POST['email'];
+    $password =  $_POST['password'];
     $city = $_POST['city'];
-    move_uploaded_file($temp_image_name,"img/$image_name");
-   $query = "INSERT INTO `students`(`rollno`, `standerd`, `name`, `gender`, `contact`, `email`, `city`,`image`) VALUES ('$rollno','$standerd','$name','$gender','$contact','$email','$city','$image_name')";
-    $run = mysqli_query($con,$query);
+    $date_of_birth = $_POST['date_of_birth']; // New field
+    $religion = $_POST['religion']; // New field
+    move_uploaded_file($temp_image_name, "img/$image_name");
     
-    if($run)
-    {
+    $query = "INSERT INTO `students`(`rollno`, `standerd`, `name`, `gender`, `contact`,`password`, `email`, `city`, `date_of_birth`, `religion`, `image`) VALUES ('$rollno','$standerd','$name','$gender','$contact','$password','$email','$city','$date_of_birth','$religion','$image_name')";
+    
+    $run = mysqli_query($con, $query);
+    
+    if($run) {
         $_SESSION['student_added'] = "Student Added Successfully";
-        $student_added =  $_SESSION['student_added'];
+        $student_added = $_SESSION['student_added'];
+    } else {
+        $_SESSION['student_added_failed'] = "Failed To Add New Student";
+        $student_added_failed = $_SESSION['student_added_failed'];
     }
-    else{
-
-      $_SESSION['student_added_failed'] = "Failed To Add New Student";
-      $student_added_failed =  $_SESSION['student_added_failed'];
-     }
 }
 ?>
+
       <!-- The Coding Has Been Started From Here -->
 
       <nav class="teal">
@@ -81,6 +83,16 @@ require_once('../include/header.php');
                                         <input type="text" name="contact" id="contact" required="required">
                                         <label for="contact">Enter Mobile Number</label>
                                     </div>
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input type="password" name="password" id="password" required="required">
+                                        <label for="password">Enter A Password</label>
+                                    </div>
+                                    <div class="input-field">
+                    <i class="material-icons prefix">date_range</i>
+                    <input type="date" name="date_of_birth" id="date_of_birth" required="required">
+                    <label for="date_of_birth"></label>
+                </div>
                         </div>
                         <div class="row">
                             <div class="col l4">
@@ -107,6 +119,7 @@ require_once('../include/header.php');
 
                                     </select>
                                 </div>
+                                
                                 <div class="input-field">
                                         <i class="material-icons prefix">location_city</i>
                                         <input type="text" name="city" id="city" required="required">
@@ -117,6 +130,15 @@ require_once('../include/header.php');
                                       <input type="text" name="email" id="email" required="required">
                                       <label for="email">Enter Email Address</label>
                                   </div>
+                                  <div class="input-field">
+                    <i class="material-icons prefix">star</i>
+                    <select name="religion" required="required">
+                        <option value="">Choose Religion</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Muslim">Muslim</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
 
                             </div>
                         </div>

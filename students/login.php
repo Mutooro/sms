@@ -63,14 +63,14 @@ else{
                                 <i class="material-icons prefix">
                                     person
                                 </i>
-                                <input type="text" name="email" id="email" value="info.mufazmi@gmail.com" required="required">
+                                <input type="text" name="email" id="email" value="" required="required">
                                 <label for="email">Enter Your Email Address</label>
                             </div>
                             <div class="input-field">
                                 <i class="material-icons prefix">
                                     lock
                                 </i>                    
-                                <input type="password" name="password" value="farooqui" id="password" required="required">
+                                <input type="password" name="password" value="" id="password" required="required">
                                 <label for="password">Enter Your Password</label>
                             </div>
                             <div class="">

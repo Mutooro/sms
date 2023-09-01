@@ -40,6 +40,7 @@ $run = mysqli_query($con,$query);
                                 <th>Gender</th>
                                 <th>City</th>
                                 <th>Contact</th>
+                                <th>Action</th>
                             </tr>
                             
                                 <?php
@@ -53,7 +54,7 @@ $run = mysqli_query($con,$query);
                                             $gender = $data['gender'];
                                             $city  = $data['city'];
                                             $contact = $data['contact'];
-                                            
+                                            $student_id = $data['id'];
                                     
                                 ?><tr>
                                     <td> <?php echo $count; ?> </td>
@@ -72,6 +73,9 @@ $run = mysqli_query($con,$query);
                                     <td><?php echo $gender; ?></td>
                                     <td><?php echo $contact; ?></td>
                                     <td><?php echo $city; ?></td>
+                                    <td><a href="editstudent.php?id=<?php echo $student_id; ?>" class="green-text waves-light"><i class="material-icons">mode_edit</i></a>
+                                    <!-- <a href="deletestudent.php?id=<?php echo $student_id; ?>" class="red-text waves-light"><i class="material-icons">delete</i></a> -->
+                                  </td>
                                     </tr>
                                 <?php } ?>
                             

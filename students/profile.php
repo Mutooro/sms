@@ -60,6 +60,25 @@ if(isset($_POST['post'])){
     $run = mysqli_query($con,$query);
 }
 ?>
+<?php  $query = "SELECT date_of_birth FROM students where id=$student_id";
+        $result = mysqli_query($con, $query);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $dob = $row['date_of_birth'];
+            $dob_year = date("Y", strtotime($dob));
+            $current_year = date("Y");
+            $age = $current_year - $dob_year;
+        }
+        $query = "SELECT city FROM students where id=$student_id";
+        $result = mysqli_query($con, $query);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $city = $row['city'];
+            
+        }
+        ?>
+
+        
 <?php
     // updating following list code
     if(isset($_POST['follow'])){
@@ -100,7 +119,7 @@ if(isset($_POST['post'])){
 ?>
 <!-- post fetching code -->
     <nav class="brown darken-4">
-        <a href="" class="brand-logo center">Social Codia </a>
+        <a href="" class="brand-logo center">My school </a>
         <a href="" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
         <a href=""><img src="../img/<?php
                                     if (isset($image) && !empty($image)){
@@ -162,45 +181,14 @@ if(isset($_POST['post'])){
                         </div>
                         <div class=" col l12 white-text brown lighten-1">
                             <h5>About Me!</h5>
-                            <p>Hi! I'm <?php echo $_SESSION['name']; ?>, I'm 18 years old, living in Sarai Meer. I am a college student
-studying at Yashawantrao Chavan Mahavidyalaya. I am open to
-opportunities in Artificial Intelligence, Engineering, Communications &
-Media, Software Engineering, and Data Science in Sarai Meer.</p>
+                            <p>Hi! I'm <?php echo $name; ?>, I'm <?php echo $age; ?> years old, living in <?php echo $city; ?>. I am a college student
+studying at Yashawantrao Chavan Mahavidyalaya. </p>
                         </div>
                         <div class="container divider"></div>
-                            <div class="col s12">
-                                <p>Perfomance</p>
-                                <p><a href="#">56</a> and <a href="#">42</a> reviews </p>
-                            </div>
+                            
                             <div class="container divider"></div>
-                            <!-- implemintion of data without any software requirement specification documents (SRS) -->                        <h6 class="col s12">Images</h6>
-                        <div class="col s4">
-                            <img src="../images/1.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/2.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/3.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/4.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/5.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/6.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/7.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/8.jpg" alt="" class="responsive-img">
-                        </div>
-                        <div class="col s4">
-                            <img src="../images/9.jpg" alt="" class="responsive-img">
-                        </div>
+                            <!-- implemintion of data without any software requirement specification documents (SRS) -->       
+                      
             </div>
             <div class="col s12 m8 l6">
                     <!-- <div class="row"> -->
@@ -324,7 +312,7 @@ Media, Software Engineering, and Data Science in Sarai Meer.</p>
                                            else
                                            {
                                              echo "user.png";
-                                           }?>" alt="" style="max-height:120px; min-height:120px; border-top-left-radius:20%;border-top-right-radius:20%; margin-bottom:-20%;" class=" responsive-img">
+                                           }?>" alt="" style="max-height:100px; min-height:100px; border-top-left-radius:20%;border-top-right-radius:20%; margin-bottom:-20%;" class=" responsive-img">
                                         <h3 class="center-align align-center black-text" style="font-size:14px; margin-bottom:10%;"><?php echo $name; ?></h3>
                                     </div>
                                 </a>
@@ -375,7 +363,7 @@ Media, Software Engineering, and Data Science in Sarai Meer.</p>
         //sending data to the datbase server without reffreshing the page using the ajax systemt
         function folRequest(){
             var sender_id = document.getElementById('from_user_id').value;
-            var reciver_id =  document.getElementById('reciver_id').value'
+            var reciver_id =  document.getElementById('reciver_id').value;
             $.ajax({
 
             })

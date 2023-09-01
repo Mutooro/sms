@@ -1,7 +1,7 @@
 <?php require_once('../include/students/header.php'); ?>
 <?php require_once('../include/students/sidenav.php'); ?>
     <nav class="brown darken-4">
-        <a href="" class="brand-logo center">Social Learnia</a>
+        <a href="" class="brand-logo center">My school</a>
         <!-- sidenav trigger code, means picture showing in right sight header sidenav, for account info and logout -->
         <a href="" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
         <a href=""><img src="../img/<?php
@@ -65,10 +65,28 @@
                         <div class="card"  style="padding-left:10px; padding-right: 10px; ">
                             <table >
                                 <tbody>  
-                                    <tr>
-                                        <th>Date Of Birth</th>
-                                        <td>09/03/2005</td>
-                                    </tr>
+                                <tr>
+    <th>Age</th>
+    <td>
+        <?php
+        // Assuming you have a connection to your database established
+        $query = "SELECT date_of_birth FROM students where id=$student_id";
+        $result = mysqli_query($con, $query);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $dob = $row['date_of_birth'];
+            $dob_year = date("Y", strtotime($dob));
+            $current_year = date("Y");
+            $age = $current_year - $dob_year;
+        }
+        
+        // Display the calculated age outside the loop
+        echo $age;
+        ?>
+    </td>
+</tr>
+
+
                                     <tr>
                                         <th>Category</th>
                                         <td>
@@ -79,14 +97,24 @@
                                         <th>Mobile Number</th>
                                         <td><?php echo $contact; ?></td>
                                     </tr>
+                                    
                                     <tr>
-                                        <th>Caste</th>
-                                        <td>Christ</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Religion</th>
-                                        <td>Gold Smith</td>
-                                    </tr>
+    <th>Religion</th>
+    <td>
+        <?php
+        // Assuming you have a connection to your database established
+        $query = "SELECT religion FROM students where id=$student_id";
+        $result = mysqli_query($con, $query);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $religion = $row['religion'];
+            
+        }
+        echo $religion . "<br>";
+        ?>
+    </td>
+</tr>
+
                                     <tr>
                                         <th>Email</th>
                                         <td><?php echo $email; ?></td>
@@ -102,11 +130,35 @@
                                 <tbody>
                                     <tr>
                                         <th>Current Address</th>
-                                        <td>56 Main Street, Suite 3, Brooklyn, NY 11210-0000</td>
+                                        <td>
+        <?php
+        // Assuming you have a connection to your database established
+        $query = "SELECT city FROM students where id=$student_id";
+        $result = mysqli_query($con, $query);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $city = $row['city'];
+            
+        }
+        echo $city . "<br>";
+        ?>
+    </td>
                                     </tr>
                                     <tr>
                                         <th>Permanent Address</th>
-                                        <td>56 Main Street, Suite 3, Brooklyn, NY 11210-0000</td>
+                                        <td>
+        <?php
+        // Assuming you have a connection to your database established
+        $query = "SELECT city FROM students where id=$student_id";
+        $result = mysqli_query($con, $query);
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $city = $row['city'];
+            
+        }
+        echo $city . "<br>";
+        ?>
+    </td>
                                     </tr>
 
                                 </tbody>
@@ -114,9 +166,15 @@
                         </div>
 
                 </div>
-                <div id="fees" class="col s12">Tesasdft 1</div>
-                <div id="exam" class="col s12">Tesaasdfasdfsdft 1</div>
-                <div id="document" class="col s12">lorem50</div> 
+                <div id="fees" class="col s12 white">
+                <div class="card"  style="padding-left:10px; padding-right: 10px; ">Tesasdft 1 <br>hey</div>
+            </div>
+                <div id="exam" class="col s12 white">
+                <div class="card"  style="padding-left:10px; padding-right: 10px; ">Tesasdft 1 <br>hey</div>
+                </div>
+                <div id="document" class="col s12 white">
+                <div class="card"  style="padding-left:10px; padding-right: 10px; ">Tesasdft 1 <br>hey</div>
+                </div> 
             
             </div>
         </div>
