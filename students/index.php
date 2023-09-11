@@ -32,8 +32,8 @@
                     <table >
                         <thead>
                             <tr>
-                                <th>Addmission</th>
-                                <td class="blue-text">18001</td>
+                                <th>User Number:</th>
+                                <td class="blue-text"><?php echo "K00/".$student_id ?></td>
                             </tr>
                             <tr>
                                 <th>Roll Number</th>

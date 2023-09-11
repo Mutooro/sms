@@ -40,7 +40,7 @@ $teacher_row = mysqli_num_rows($run);
       <!-- The Dashboard Coding Started From Here -->
 
       <div class="row main">
-        <div class="col m12 s12 l3">
+        <div class="col m12 s12 l5">
           <div class="card">
             <div class="card-content blue lighten-3 white-text">
               <h3> <b><?php echo $student_row; ?></b> </h3>
@@ -51,11 +51,11 @@ $teacher_row = mysqli_num_rows($run);
             </div>
           </div>
         </div>
-        <div class="col m12 s12 l3">
+        <div class="col m12 s12 l5">
             <div class="card">
               <div class="card-content blue lighten-3 white-text">
               <h3> <b><?php echo $teacher_row; ?></b> </h3>
-                <p> <b>Teachers</b> </p>
+                <p> <b>Almuni</b> </p>
                   
               </div>
               <div class=" center card-action blue lighten-2 white-text" >
@@ -63,7 +63,7 @@ $teacher_row = mysqli_num_rows($run);
               </div>
             </div>
           </div>
-          <div class="col m12 s12 l3">
+          <!-- <div class="col m12 s12 l3">
               <div class="card">
                 <div class="card-content blue lighten-3 white-text">
                   <h3> <b><?php echo $course_row; ?></b> </h3>
@@ -73,8 +73,8 @@ $teacher_row = mysqli_num_rows($run);
                <a href="course.php">More Information <i class="material-icons tiny">open_in_new</i></a>
                 </div>
               </div>
-            </div>
-            <div class="col m12 s12 l3">
+            </div> -->
+            <!-- <div class="col m12 s12 l3">
                 <div class="card">
                   <div class="card-content blue lighten-3 white-text">
                     <h3> <b>2</b> </h3>
@@ -84,7 +84,7 @@ $teacher_row = mysqli_num_rows($run);
                  <a href="">More Information <i class="material-icons tiny">open_in_new</i></a>
                   </div>
                 </div>
-              </div>
+              </div> -->
       </div>
 
 

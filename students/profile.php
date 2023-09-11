@@ -1,7 +1,7 @@
 <?php require_once('../include/students/header.php'); ?>
 <?php require_once('../include/students/sidenav.php'); ?>
 
-<!-- fetching the only logined user image using the session -->
+<!-- fetching the only logined user image using the session-->
 
 <?php
 
@@ -24,7 +24,7 @@ else{
  $name = $data['name'];
 }
 ?>
-<!-- fetching the user id using get method username, which will send into follow table-->
+<!-- fetching the user id using get method username , which will send into follow table-->
 <?php
 if(isset($_GET['u'])){
     $get_username = $_GET['u'];

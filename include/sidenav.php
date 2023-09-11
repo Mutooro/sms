@@ -51,24 +51,24 @@ $image = $data['image'];
           <div class="collapsible-header">
             <ul>
               <li>
-              <i class=" collapsible-header material-icons">person</i> <span style="margin-left:25px;">Teacher</span>  <i class="material-icons right prefix" style="margin-right:0; margin-left:80px;">arrow_drop_down</i>
+              <i class=" collapsible-header material-icons">person</i> <span style="margin-left:25px;">Alumni</span>  <i class="material-icons right prefix" style="margin-right:0; margin-left:80px;">arrow_drop_down</i>
               </li>
             </ul>
           </div>
           <div class="collapsible-body">
             <ul>
               <li>
-              <li><a href="addteacher.php"><i class="material-icons">group_add</i>Add Teacher</a></li>
-              <li><a href="editteacher.php?id=1"><i class="material-icons">edit</i>Edit Teacher</a></li>
-              <li><a href=""><i class="material-icons">delete</i>Delete Teachers</a></li>
-              <li><a href="teachers.php"><i class="material-icons">groups</i>All Teachers</a></li>
+              <li><a href="addteacher.php"><i class="material-icons">group_add</i>Add </a></li>
+              <li><a href="editteacher.php?id=1"><i class="material-icons">edit</i>Edit </a></li>
+              <li><a href=""><i class="material-icons">delete</i>Delete </a></li>
+              <li><a href="teachers.php"><i class="material-icons">groups</i>View All</a></li>
               </li>
             </ul>
           </div>
         </li>
         <li>
         </li>
-        <li>
+        <!-- <li>
           <div class="collapsible-header">
             <i class="collapsible-header material-icons">library_books</i> <span style="margin-left:25px;">Course</span>  <i class="material-icons right prefix" style="margin-right:0; margin-left:91px;">arrow_drop_down</i>
           </div>
@@ -80,7 +80,7 @@ $image = $data['image'];
               </li>
             </ul>
           </div>
-        </li>
+        </li> -->
         <div class="divider"></div>
         <li><a href="../include/logout.php"><i class="material-icons">logout</i>Logout</a></li>
         <li><a href="about.php"><i class="material-icons">info</i>About Us</a></li>

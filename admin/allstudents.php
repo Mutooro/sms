@@ -35,11 +35,11 @@ $run = mysqli_query($con,$query);
                                 <th>Sr. No</th>
                                 <th>Student Image</th>
                                 <th>Name</th>
-                                <th>Roll No</th>
-                                <th>Standerd</th>
+                                <th>Yeay of study</th>
+                                <th>Course</th>
                                 <th>Gender</th>
-                                <th>City</th>
                                 <th>Contact</th>
+                                <th>Address</th>
                                 <th>Action</th>
                             </tr>
                             

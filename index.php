@@ -23,10 +23,10 @@ else{
 
 <nav class="brown darken-4">
     <div class="container">
-        <a class="brand-logo hide-on-med-and-down" href="">Social Learnia</a>
+        <a class="brand-logo hide-on-med-and-down" href="">My school</a>
     <ul class="right">
-        <li class="waves-effect waves-light"><a href="">About Us</a></li>
-        <li class="waves-effect waves-light"><a href="login.php">Teacher Login</a></li>
+        <!-- <li class="waves-effect waves-light"><a href="">About Us</a></li> -->
+        <li class="waves-effect waves-light"><a href="login.php">Admin Login</a></li>
         <li class="waves-effect waves-light"><a href="students">Student Login</a></li>
     </ul>
 </div>
@@ -132,7 +132,7 @@ else{
                                             <th>Contact</th>
                                             <td><?php  echo $contact; ?></td>
                                         </tr>                                                              <tr>
-                                            <th>City</th>
+                                            <th>Address</th>
                                             <td><?php  echo $city; ?></td>
                                         </tr>
                                     </table>
